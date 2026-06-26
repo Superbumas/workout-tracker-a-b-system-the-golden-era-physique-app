@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.125rem;
+        
+        /* Classic Newsprint & Iron Theme - Light Mode */
+        /* Background: Off-White / Cream (#FDFBF7) */
+        --background: 0.99 0.01 60;
+        /* Text: Charcoal (#2C2C2C) */
+        --foreground: 0.22 0 0;
+        
+        /* Card: Slightly lighter cream */
+        --card: 0.985 0.01 60;
+        --card-foreground: 0.22 0 0;
+        
+        --popover: 0.985 0.01 60;
+        --popover-foreground: 0.22 0 0;
+        
+        /* Accent: Burnished Gold (#C5A059) */
+        --primary: 0.72 0.08 75;
+        --primary-foreground: 0.99 0.01 60;
+        
+        /* Secondary: Slate Grey (#708090) */
+        --secondary: 0.58 0.02 240;
+        --secondary-foreground: 0.99 0.01 60;
+        
+        --muted: 0.94 0.01 60;
+        --muted-foreground: 0.50 0.01 240;
+        
+        --accent: 0.72 0.08 75;
+        --accent-foreground: 0.22 0 0;
+        
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.99 0.01 60;
+        
+        /* Border: Subtle charcoal */
+        --border: 0.85 0.01 240;
+        --input: 0.85 0.01 240;
+        --ring: 0.72 0.08 75;
+        
+        --chart-1: 0.72 0.08 75;
+        --chart-2: 0.58 0.02 240;
+        --chart-3: 0.50 0.01 240;
+        --chart-4: 0.65 0.05 60;
+        --chart-5: 0.40 0.01 0;
+    }
+
+    .dark {
+        /* Classic Newsprint & Iron Theme - Dark Mode */
+        /* Background: Matte Black (#121212) */
+        --background: 0.10 0 0;
+        /* Text: Silver Grey (#E0E0E0) */
+        --foreground: 0.88 0 0;
+        
+        --card: 0.14 0 0;
+        --card-foreground: 0.88 0 0;
+        
+        --popover: 0.14 0 0;
+        --popover-foreground: 0.88 0 0;
+        
+        /* Accent: Burnished Gold (#C5A059) - same in dark mode */
+        --primary: 0.72 0.08 75;
+        --primary-foreground: 0.10 0 0;
+        
+        /* Secondary: Slate Grey adjusted for dark */
+        --secondary: 0.35 0.01 240;
+        --secondary-foreground: 0.88 0 0;
+        
+        --muted: 0.25 0 0;
+        --muted-foreground: 0.65 0 0;
+        
+        --accent: 0.72 0.08 75;
+        --accent-foreground: 0.10 0 0;
+        
+        --destructive: 0.704 0.191 22.216;
+        --destructive-foreground: 0.88 0 0;
+        
+        --border: 0.25 0 0;
+        --input: 0.25 0 0;
+        --ring: 0.72 0.08 75;
+        
+        --chart-1: 0.72 0.08 75;
+        --chart-2: 0.58 0.02 240;
+        --chart-3: 0.65 0 0;
+        --chart-4: 0.50 0.05 60;
+        --chart-5: 0.75 0.01 0;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+        font-family: 'Roboto Mono', monospace;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+    
+    /* Vintage typewriter aesthetic for inputs and numeric fields */
+    input[type="number"],
+    input[type="text"],
+    textarea {
+        font-family: 'Roboto Mono', monospace;
+        font-weight: 400;
+    }
+    
+    /* Paper texture effect (subtle) */
+    .paper-texture {
+        background-image: 
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                oklch(var(--foreground) / 0.01) 2px,
+                oklch(var(--foreground) / 0.01) 3px
+            );
+    }
+    
+    /* Vintage button styling */
+    .vintage-button {
+        position: relative;
+        transition: all 0.2s ease;
+    }
+    
+    .vintage-button::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 1px solid currentColor;
+        opacity: 0.3;
+        pointer-events: none;
+    }
+    
+    /* Hand-drawn sketch effect for progress bars */
+    .sketch-progress {
+        position: relative;
+    }
+    
+    .sketch-progress::after {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border: 1px solid oklch(var(--primary));
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    /* Smooth phase transitions */
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in-from-bottom {
+        from {
+            transform: translateY(1rem);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in-from-right {
+        from {
+            transform: translateX(1rem);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in-from-left {
+        from {
+            transform: translateX(-1rem);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-in-from-top {
+        from {
+            transform: translateY(-0.5rem);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animate-in {
+        animation-fill-mode: both;
+    }
+
+    .fade-in {
+        animation-name: fade-in;
+    }
+
+    .slide-in-from-bottom-4 {
+        animation-name: slide-in-from-bottom;
+    }
+
+    .slide-in-from-right-4 {
+        animation-name: slide-in-from-right;
+    }
+
+    .slide-in-from-left-4 {
+        animation-name: slide-in-from-left;
+    }
+
+    .slide-in-from-top-2 {
+        animation-name: slide-in-from-top;
+    }
+
+    .duration-300 {
+        animation-duration: 300ms;
+    }
+
+    .duration-500 {
+        animation-duration: 500ms;
+    }
+}
